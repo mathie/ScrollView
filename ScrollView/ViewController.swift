@@ -10,20 +10,19 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var widthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        widthConstraint.constant = view.bounds.width - 40
         
-        print(widthConstraint.constant)
-        widthConstraint.constant = view.bounds.width
-        print(widthConstraint.constant)
+        // Need to relayout with the new width constraint before calculating the height.
+        view.layoutIfNeeded()
+        
+        let bottomLabel = view.subviews.first!.subviews.first!.subviews.last!
+        let desiredHeight = bottomLabel.frame.maxY
+        heightConstraint.constant = desiredHeight + 8.0
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
 
