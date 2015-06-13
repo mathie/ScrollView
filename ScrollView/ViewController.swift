@@ -9,9 +9,14 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var widthConstraint: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(widthConstraint.constant)
+        widthConstraint.constant = view.bounds.width
+        print(widthConstraint.constant)
     }
 
     override func didReceiveMemoryWarning() {
